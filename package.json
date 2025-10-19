@@ -1,0 +1,48 @@
+{
+  "name": "elwiz-prices",
+  "version": "0.1.0",
+  "description": "A comprehensive module for fetching, processing, and managing energy prices from Nord Pool and ENTSO-E APIs",
+  "main": "index.js",
+  "bin": {
+    "elwiz-prices": "./bin/elwiz-prices.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/elwiz-prices.js"
+  },
+  "keywords": [
+    "energy",
+    "prices",
+    "nord-pool",
+    "entso-e",
+    "electricity",
+    "norway",
+    "denmark",
+    "sweden",
+    "finland"
+  ],
+  "author": "ElWiz Project",
+  "license": "MIT",
+  "dependencies": {
+    "@iotux/uni-cache": "^0.3.0",
+    "axios": "^1.7.9",
+    "date-fns": "^4.1.0",
+    "easy-tasker": "^0.1.2",
+    "energy-price-fetcher": "^0.1.0",
+    "express": "^4.21.1",
+    "js-yaml": "^4.1.0",
+    "mqtt": "^5.14.1",
+    "xml-js": "^1.6.11"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iotux/elwiz-prices.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iotux/elwiz-prices/issues"
+  },
+  "homepage": "https://github.com/iotux/elwiz-prices#readme"
+}

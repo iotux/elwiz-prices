@@ -1,0 +1,15 @@
+--- 
+# Price settings
+# This file is used as price-config.yaml in development
+cacheType: 'file'            # Shared cache backend ('file', 'sqlite', etc.)
+regionCode: 'NO3'             # Nord Pool region code (NO1, NO2, NO3, NO4, NO5 for Norway)
+priceCurrency: 'NOK'          # Currency code (NOK, EUR, etc.)
+priceInterval: '1h'           # '1h' for hourly, '15m' for 15-minute intervals
+dayHoursStart: 6              # Peak/off-peak stats start hour
+dayHoursEnd: 22               # Peak/off-peak stats end hour
+
+# API settings
+priceAccessToken: e797e1bd-2b58-4cd9-bed2-2b59f53554eb  # Required for ENTSO-E access
+priceFetchPriority: 'nordpool'                     # 'nordpool' or 'entsoe'
+
+keepDays: 10

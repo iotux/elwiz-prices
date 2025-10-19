@@ -1,0 +1,27 @@
+# ElWiz default general configuration
+# Modify this file directly or create config.local.yaml for environment-specific overrides.
+
+enableMqtt: true
+enableRest: true
+
+mqttUrl: "mqtt://localhost:1883"
+mqttOptions: {}
+priceTopic: "my/prices"
+
+restPort: 3010
+
+savePath: "./data"
+priceFilePath: "./data/prices"
+currencyFilePath: "./data/currencies"
+
+#keepDays: 7
+#currencyKeepDays: 7
+scheduleHours: [13, 14]
+scheduleMinutes: [6, 11, 16, 21]
+scheduleEuMinutes: [5]
+nextDayFetchHour: 13
+nextDayFetchMinute: 0
+
+#currencyUrl: 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
+
+DEBUG: false

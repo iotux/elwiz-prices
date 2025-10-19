@@ -1,0 +1,13 @@
+#
+*.sw*
+node_modules/
+# Data directory
+data/*
+hex/
+.vscode/
+# Local configuration (override defaults in config.local.yaml if desired)
+config.local.yaml
+package-lock.json
+# Testing and temporary files
+tmp/*
+log/*
