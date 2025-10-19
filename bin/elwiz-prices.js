@@ -16,12 +16,14 @@ const appConfigPath = args[1];
 const activeSchedulers = [];
 
 function shouldFetchNextDay(config, referenceDate = new Date()) {
-  const hours = Array.isArray(config.scheduleHours) && config.scheduleHours.length
-    ? config.scheduleHours.map(Number)
-    : [config.nextDayFetchHour ?? 13];
-  const minutes = Array.isArray(config.scheduleMinutes) && config.scheduleMinutes.length
-    ? config.scheduleMinutes.map(Number)
-    : [config.nextDayFetchMinute ?? 0];
+  const hours =
+    Array.isArray(config.scheduleHours) && config.scheduleHours.length
+      ? config.scheduleHours.map(Number)
+      : [config.nextDayFetchHour ?? 13];
+  const minutes =
+    Array.isArray(config.scheduleMinutes) && config.scheduleMinutes.length
+      ? config.scheduleMinutes.map(Number)
+      : [config.nextDayFetchMinute ?? 0];
 
   const currentHour = referenceDate.getHours();
   const currentMinute = referenceDate.getMinutes();
@@ -39,12 +41,14 @@ function shouldFetchNextDay(config, referenceDate = new Date()) {
 }
 
 function nextDayWindowDescription(config) {
-  const hours = Array.isArray(config.scheduleHours) && config.scheduleHours.length
-    ? config.scheduleHours.map(Number)
-    : [config.nextDayFetchHour ?? 13];
-  const minutes = Array.isArray(config.scheduleMinutes) && config.scheduleMinutes.length
-    ? config.scheduleMinutes.map(Number)
-    : [config.nextDayFetchMinute ?? 0];
+  const hours =
+    Array.isArray(config.scheduleHours) && config.scheduleHours.length
+      ? config.scheduleHours.map(Number)
+      : [config.nextDayFetchHour ?? 13];
+  const minutes =
+    Array.isArray(config.scheduleMinutes) && config.scheduleMinutes.length
+      ? config.scheduleMinutes.map(Number)
+      : [config.nextDayFetchMinute ?? 0];
   const earliestHour = Math.min(...hours);
   const earliestMinute = Math.min(...minutes);
   return `${earliestHour.toString().padStart(2, "0")}:${earliestMinute
@@ -177,9 +181,10 @@ function scheduleCronJobs(priceManager, config) {
       const scheduler = new TaskScheduler(
         async () => {
           try {
-            console.log(
-              `[${new Date().toISOString()}] Scheduled fetch (${pad(hour)}:${pad(minute)})`,
-            );
+            if (config.debug)
+              console.log(
+                `[${new Date().toISOString()}] Scheduled fetch (${pad(hour)}:${pad(minute)})`,
+              );
             await runFetchCycle(priceManager, config);
           } catch (error) {
             console.error(
@@ -195,9 +200,9 @@ function scheduleCronJobs(priceManager, config) {
       );
       scheduler.timeAlignedSchedule(cron);
       activeSchedulers.push(scheduler);
-      console.log(
-        `Scheduled price fetch at ${pad(hour)}:${pad(minute)} (cron: ${cron}).`,
-      );
+      //console.log(
+      //  `Scheduled price fetch at ${pad(hour)}:${pad(minute)} (cron: ${cron}).`,
+      //);
     }
   }
 
@@ -218,9 +223,10 @@ function scheduleCronJobs(priceManager, config) {
                 );
                 return;
               }
-              console.log(
-                `[${new Date().toISOString()}] Scheduled ENTSO-E fallback (${pad(hour)}:${pad(minute)})`,
-              );
+              if (config.debug)
+                console.log(
+                  `[${new Date().toISOString()}] Scheduled ENTSO-E fallback (${pad(hour)}:${pad(minute)})`,
+                );
               await safeFetchAndProcess(priceManager, 1, "entsoe", config);
             } catch (error) {
               console.error(
@@ -236,18 +242,18 @@ function scheduleCronJobs(priceManager, config) {
         );
         scheduler.timeAlignedSchedule(cron);
         activeSchedulers.push(scheduler);
-        console.log(
-          `Scheduled ENTSO-E retry at ${pad(hour)}:${pad(minute)} (cron: ${cron}).`,
-        );
+        //console.log(
+        //  `Scheduled ENTSO-E retry at ${pad(hour)}:${pad(minute)} (cron: ${cron}).`,
+        //);
       }
     }
   }
 }
 
 function uniqueNumbers(values) {
-  return [...new Set(values.map((v) => Number(v)).filter((v) => !Number.isNaN(v)))].sort(
-    (a, b) => a - b,
-  );
+  return [
+    ...new Set(values.map((v) => Number(v)).filter((v) => !Number.isNaN(v))),
+  ].sort((a, b) => a - b);
 }
 
 function pad(value) {

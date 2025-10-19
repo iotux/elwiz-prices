@@ -86,8 +86,12 @@ class ConfigLoader {
   }
 
   loadAllConfigs() {
-    const appConfig = this.loadYaml(this.appConfigPath, { missingLevel: "info" });
-    const priceConfig = this.loadYaml(this.priceConfigPath, { missingLevel: "warn" });
+    const appConfig = this.loadYaml(this.appConfigPath, {
+      missingLevel: "info",
+    });
+    const priceConfig = this.loadYaml(this.priceConfigPath, {
+      missingLevel: "warn",
+    });
     return {
       appConfig,
       priceConfig,
@@ -205,10 +209,10 @@ class ConfigLoader {
       nextDayFetchHour: this.get("nextDayFetchHour", 13),
       nextDayFetchMinute: this.get("nextDayFetchMinute", 0),
       // Debug
-      debug: this.get("DEBUG", false),
+      debug: this.get("schedulerDebug", false),
     };
   }
-  
+
   // Load the priceregions.yaml file
   loadPriceRegions() {
     try {
