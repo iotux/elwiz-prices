@@ -1,6 +1,6 @@
 {
   "name": "elwiz-prices",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A comprehensive module for fetching, processing, and managing energy prices from Nord Pool and ENTSO-E APIs",
   "main": "index.js",
   "bin": {
